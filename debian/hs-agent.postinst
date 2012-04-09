@@ -1,0 +1,5 @@
+#!/bin/bash
+
+/usr/lib/hs/agent/bin/HSAgent-setup --postinst
+
+##DEBHELPER##

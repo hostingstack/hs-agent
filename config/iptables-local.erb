@@ -1,0 +1,10 @@
+# See the iptables(8) manpage and iptables-save(8) output for examples
+
+*filter
+# A simple test rule
+-A net2fw-LOCAL -s 192.0.2.0/24 -j DROP -m comment --comment "TEST-NET-1 documentation example"
+
+# Allow SSH from Admin network
+#-A net2fw-LOCAL -s 172.16.66.0/24 -p tcp -m tcp --dport 22 -m comment --comment "Allow Admin SSH access" -j ACCEPT
+
+COMMIT

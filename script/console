@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby1.9.1
+require File.expand_path('../../lib/hs-agent/boot', __FILE__)
+require 'hs-agent'
+require 'irb'
+require 'irb/completion'
+$logger = Logger.new STDOUT
+ARGV.clear
+IRB.start

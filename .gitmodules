@@ -1,0 +1,3 @@
+[submodule "gems/hs-api"]
+	path = gems/hs-api
+	url = git://github.com/hostingstack/hs-api.git

@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby1.9.1
+require File.expand_path('../../lib/hs-agent/boot', __FILE__)
+require 'hs-api/agent'
+
+app_token = ARGV[0]
+puts "Snapshotting #{app_token} ..."
+client = remote_call(HSAgent::Control)
+client.snapshot_vm(app_token, "log:admin", false)

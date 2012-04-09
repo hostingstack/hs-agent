@@ -1,0 +1,46 @@
+###########
+# WARNING #
+###########
+
+# All modifcations to this file will be lost during software upgrade. Please use the
+# iptables-local.erb file for additional rules.
+
+*nat
+:PREROUTING ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A POSTROUTING -o <%= internet_dev %> -j MASQUERADE
+COMMIT
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:net2fw-HS - [0:0]
+:net2fw-LOCAL - [0:0]
+
+# Connection tracking is a must
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+# We want to have proper ICMP handling to prevent any sort of dubious errors/stalled connects
+-A INPUT -p icmp -j ACCEPT
+
+# Jump to the HSAgent specific rules
+-A INPUT -i <%= internet_dev %> -j net2fw-HS
+
+# Jump to the local rules
+-A INPUT -i <%= internet_dev %> -j net2fw-LOCAL
+
+# Drop everything else coming from the internet
+-A INPUT -i <%= internet_dev %> -j REJECT --reject-with icmp-port-unreachable
+
+
+# FIXME: Needs to pulled out to separate config files:
+
+# role: http gateway
+-A net2fw-HS -p tcp --dport 80 -j ACCEPT -m comment --comment "gateway: Allow HTTP traffic to HTTP gateway"
+
+# role: service node
+
+# role: apphost
+
+COMMIT

@@ -1,0 +1,18 @@
+Source: hs-agent
+Section: net
+Priority: extra
+Maintainer: HostingStack Maintainers <maintainers@hostingstack.org>
+Build-Depends: debhelper (>= 7.0.50~), ruby1.9.1-full, ruby1.9.1-dev, bundler, libsqlite3-dev, libpq-dev, libmysqlclient-dev, git, libtokyocabinet-dev, libxml2-dev, libxslt1-dev
+Standards-Version: 3.9.2
+Origin: HostingStack
+
+Package: hs-agent
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.9.1-full, bundler, git, hs-vz-config (= ${binary:Version}), sysstat, zip, libxml2, libxslt1.1
+Description: HostingStack Agent
+  Agent. Does everything!
+
+Package: hs-vz-config
+Architecture: any
+Description: HostingStack OpenVZ configuration files
+Depends: ${misc:Depends}

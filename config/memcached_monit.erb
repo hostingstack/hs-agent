@@ -1,0 +1,4 @@
+check process <%=servicename%> with pidfile <%=piddir%>/<%=servicename%>.pid
+        start = "/usr/bin/memcached -d -u nobody -P <%=piddir%>/<%=servicename%>.pid -m <%=memsize%> -p <%=port%>"
+        stop = "/bin/sh -c '/bin/kill `cat <%=piddir%>/<%=servicename%>.pid`'"
+
