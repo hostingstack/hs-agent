@@ -25,3 +25,10 @@ For the Gateway role, the Thrift server is also used by the external
 SshGateway process/service. There's also an additional TCP interface
 for the HttpGateway service, this is implemented using EventMachine.
 
+Legalese
+--------
+
+Copyright 2011, 2012 Efficient Cloud Ltd.
+
+Released under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
+
