@@ -6,7 +6,7 @@ PRODUCT_ROOT=usr/lib/hs/agent
 DEB_ROOT=$(CURDIR)/debian/
 DESTPATH=$(DEB_ROOT)$(PRODUCT)/$(PRODUCT_ROOT)
 
-BUNDLE=bundle
+BUNDLE=ruby1.9.1 -S bundle
 
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
