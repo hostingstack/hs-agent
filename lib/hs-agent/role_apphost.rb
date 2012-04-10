@@ -69,11 +69,14 @@ module HSAgent
       stdin_wr.puts(rules)
       stdin_wr.close
 
-      # FIXME: Capture & print stdout/stderr
-      pid = Process.spawn(cmd, :in => stdin_rd, :out => '/dev/null', :err => '/dev/null')
+      stdout_rd, stdout_wr = IO.pipe
+      pid = Process.spawn(cmd, :in => stdin_rd, :out => stdout_wr, :err => stdout_wr)
       Process.waitpid(pid)
-      raise "%s failed with exitstatus %i. Output: %s" % [cmd, $?.exitstatus] unless $?.exitstatus == 0
+      stdout_wr.close
+      output = stdout_rd.read
+      stdout_rd.close
       stdin_rd.close
+      raise "%s failed with exitstatus %i. Output: %s" % [cmd, $?.exitstatus, output] unless $?.exitstatus == 0
     end
 
     def ensure_ip_forwarding
