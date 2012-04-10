@@ -11,11 +11,14 @@ module HSAgent
     def initialize(mode)
       if [:both, :main].include?(mode)
         @scheduler = Scheduler.new
-        @scheduler.clear_all_slots
-        intialize_iptables_rules if $config[:iptables_processing]
       end
-      ensure_ip_forwarding
       ensure_app_directories
+    end
+
+    def preflight_main
+      @scheduler.clear_all_slots
+      intialize_iptables_rules if $config[:iptables_processing]
+      ensure_ip_forwarding
     end
 
     def intialize_iptables_rules

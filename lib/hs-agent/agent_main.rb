@@ -73,6 +73,10 @@ module HSAgent
     end
     
     def run_main
+      $roles.each do |key, role|
+        role.preflight_main if role.respond_to?(:preflight_main)
+      end
+
       Thread.new do
         StatsCollector.thread_body
       end
