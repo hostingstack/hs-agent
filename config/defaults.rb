@@ -14,7 +14,7 @@ $config[:gateway_tcb_key_material_name] = 'key_material.tcb'
 
 # Services
 $config[:service_db] = 'sqlite:///var/lib/hs/service.db'
-$config[:service_memcached_monit_bin] = '/usr/sbin/monit'
+$config[:service_memcached_monit_bin] = 'monit'
 $config[:service_memcached_monit_conf] = '/var/lib/hs/monit'
 $config[:service_memcached_monit_erb] = File.expand_path('../../config/memcached_monit.erb', __FILE__)
 $config[:service_memcached_monit_piddir] = '/var/lib/hs/memcached'
